@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDR Burst 2026 — Agenda</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0F0F1F;
+    color: #fff;
+    min-height: 100vh;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 80px 24px 60px;
+    background: linear-gradient(135deg, #0F0F1F 0%, #1a1a3e 50%, #0F0F1F 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 50% 50%, rgba(255,89,51,0.08) 0%, transparent 50%);
+    animation: pulse 8s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 1; }
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  .hero h1 span { color: #FF5933; }
+
+  .hero .subtitle {
+    font-size: 1.25rem;
+    color: rgba(255,255,255,0.6);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero .dates {
+    margin-top: 24px;
+    display: inline-flex;
+    gap: 12px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.8);
+    font-weight: 500;
+  }
+
+  .hero .dates .sep {
+    color: rgba(255,255,255,0.2);
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .day-section {
+    margin-top: 48px;
+  }
+
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid rgba(255,89,51,0.3);
+  }
+
+  .day-badge {
+    background: #FF5933;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  .day-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .agenda-item {
+    display: flex;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.2s;
+  }
+
+  .agenda-item:hover {
+    background: rgba(255,255,255,0.02);
+    border-radius: 8px;
+    margin: 0 -12px;
+    padding: 16px 12px;
+  }
+
+  .agenda-item.is-break {
+    opacity: 0.4;
+    padding: 10px 0;
+  }
+
+  .agenda-item.is-break:hover {
+    background: none;
+    margin: 0;
+    padding: 10px 0;
+  }
+
+  .agenda-item.is-fun {
+    background: rgba(255,89,51,0.06);
+    border-radius: 8px;
+    margin: 4px -12px;
+    padding: 16px 12px;
+    border-bottom: none;
+  }
+
+  .time {
+    min-width: 155px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #FF5933;
+    padding-top: 2px;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .is-break .time {
+    color: rgba(255,255,255,0.3);
+  }
+
+  .details { flex: 1; }
+
+  .details h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #fff;
+  }
+
+  .details p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+  }
+
+  .is-break .details h3 {
+    font-weight: 500;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.85rem;
+  }
+
+  .tz-note {
+    text-align: center;
+    margin-top: 48px;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .footer {
+    text-align: center;
+    padding: 40px 24px;
+    color: rgba(255,255,255,0.2);
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 2rem; }
+    .hero .subtitle { font-size: 1rem; }
+    .agenda-item { flex-direction: column; gap: 4px; }
+    .time { min-width: unset; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>LARGE-N-<span>CHARGE</span></h1>
+    <div class="subtitle">SDR Burst 2026</div>
+    <div class="dates">
+      <span>Thursday & Friday</span>
+      <span class="sep">|</span>
+      <span>All times PST</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- DAY 1 -->
+  <div class="day-section">
+    <div class="day-header">
+      <div class="day-badge">Day 1</div>
+      <div class="day-title">Thursday</div>
+    </div>
+
+    <div class="agenda-item">
+      <div class="time">9:00 — 10:00 PST</div>
+      <div class="details">
+        <h3>Morning Kick-Off</h3>
+        <p>Welcome, expectations, and ice breaker activity</p>
+      </div>
+    </div>
+
+    <div class="agenda-item">
+      <div class="time">10:00 — 10:30 PST</div>
+      <div class="details">
+        <h3>Team Rules & Identity</h3>
+        <p>Who we are as a team, how we operate, what we stand for</p>
+      </div>
+    </div>
+
+    <div class="agenda-item is-break">
+      <div class="time">10:30 — 10:45 PST</div>
+      <div class="details"><h3>Break</h3></div>
+    </div>
+
+    <div class="agenda-item">
+      <div class="time">10:45 — 11:15 PST</div>
+      <div class="details">
+        <h3>What Does "Good" Look Like: AE/SDR Partnership</h3>
+        <p>Aligning on what a strong AE/SDR partnership looks like and how we show up for each other</p>
+      </div>
+    </div>
+
+    <div class="agenda-item is-break">
+      <div class="time">11:15 — 12:15 PST</div>
+      <div class="details"><h3>Lunch</h3></div>
+    </div>
+
+    <div class="agenda-item">
+      <div class="time">12:30 — 1:00 PST</div>
+      <div class="details">
+        <h3>Career Advancement Q&A with Waseem</h3>
+        <p>Open conversation on growth, development, and navigating your career at Shopify — come with questions!</p>
+      </div>
+    </div>
+
+    <div class="agenda-item">
+      <div class="time">1:00 — 3:00 PST</div>
+      <div class="details">
+        <h3>AI Lab</h3>
+        <p>Hands-on session covering AI setup, guest speakers, building AI workflows for outbound, and a show & tell competition</p>
+      </div>
+    </div>
+
+    <div class="agenda-item is-break">
+      <div class="time">3:00 — 3:15 PST</div>
+      <div class="details"><h3>Break</h3></div>
+    </div>
+
+    <div class="agenda-item">
+      <div class="time">3:15 — 4:00 PST</div>
+      <div class="details">
+        <h3>Open Session</h3>
+        <p>TBD</p>
+      </div>
+    </div>
+
+    <div class="agenda-item is-fun">
+      <div class="time">4:00 PST</div>
+      <div class="details">
+        <h3>Head out & get ready for pickleball!</h3>
+      </div>
+    </div>
+
+    <div class="agenda-item is-fun">
+      <div class="time">5:00 — 6:00 PST</div>
+      <div class="details">
+        <h3>Pickleball</h3>
+      </div>
+    </div>
+
+    <div class="agenda-item is-fun">
+      <div class="time">6:30 — 8:00 PST</div>
+      <div class="details">
+        <h3>Team Dinner</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day-section">
+    <div class="day-header">
+      <div class="day-badge">Day 2</div>
+      <div class="day-title">Friday</div>
+    </div>
+
+    <div class="agenda-item">
+      <div class="time">9:30 — 11:15 PST</div>
+      <div class="details">
+        <h3>All About Me Presentations</h3>
+        <p>Get to know your teammates — everyone shares their story</p>
+      </div>
+    </div>
+
+    <div class="agenda-item is-break">
+      <div class="time">11:15 — 11:30 PST</div>
+      <div class="details"><h3>Break</h3></div>
+    </div>
+
+    <div class="agenda-item">
+      <div class="time">11:30 — 12:00 PST</div>
+      <div class="details">
+        <h3>Breaking Through the Noise: Pattern Interrupts for SDRs</h3>
+        <p>Why the same old outreach doesn't work anymore and how to break through</p>
+      </div>
+    </div>
+
+    <div class="agenda-item is-break">
+      <div class="time">12:00 — 1:00 PST</div>
+      <div class="details"><h3>Lunch</h3></div>
+    </div>
+
+    <div class="agenda-item">
+      <div class="time">1:00 — 1:45 PST</div>
+      <div class="details">
+        <h3>Persona Playbook Presentation</h3>
+        <p>Deep dive on who we should go after, multi-threading and champion building</p>
+      </div>
+    </div>
+
+    <div class="agenda-item is-break">
+      <div class="time">1:45 — 2:00 PST</div>
+      <div class="details"><h3>Break</h3></div>
+    </div>
+
+    <div class="agenda-item">
+      <div class="time">2:00 — 3:30 PST</div>
+      <div class="details">
+        <h3>Ship It: Project Competition</h3>
+        <p>Come ready to compete.</p>
+      </div>
+    </div>
+
+    <div class="agenda-item is-break">
+      <div class="time">3:30 — 3:45 PST</div>
+      <div class="details"><h3>Break</h3></div>
+    </div>
+
+    <div class="agenda-item">
+      <div class="time">3:45 — 4:15 PST</div>
+      <div class="details">
+        <h3>Key Takeaways & What I'm Implementing</h3>
+        <p>Round-table closeout: each person shares their #1 takeaway from Burst and one thing they're committing to implement when they get home.</p>
+      </div>
+    </div>
+
+    <div class="agenda-item is-fun">
+      <div class="time">4:15 — 5:00 PST</div>
+      <div class="details">
+        <h3>Goodbye & Safe Travels!</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="tz-note">All times are in Pacific Standard Time (PST)</div>
+</div>
+
+<div class="footer">LARGE-N-CHARGE &middot; SDR Burst 2026</div>
+
+</body>
+</html>
